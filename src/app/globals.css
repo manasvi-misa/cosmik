@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonts are loaded via <link> in layout.tsx — no @import needed here */
+
+:root {
+  --void: #03020a;
+  --deep-cosmos: #080618;
+  --nebula: #110d2b;
+  --astral: #1a1240;
+  --stellar: #241a5a;
+  --aurora-violet: #7c3aed;
+  --aurora-indigo: #4f46e5;
+  --aurora-blue: #2563eb;
+  --aurora-teal: #0891b2;
+  --stardust: #c4b5fd;
+  --moonbeam: #e2e8f0;
+  --sunray: #fbbf24;
+  --mars-red: #ef4444;
+  --venus-rose: #ec4899;
+  --mercury-cyan: #06b6d4;
+  --jupiter-gold: #f59e0b;
+  --saturn-sage: #10b981;
+  --text-primary: #f1f0ff;
+  --text-secondary: #a5b4fc;
+  --text-muted: #6b7280;
+  --glass: rgba(255,255,255,0.04);
+  --glass-border: rgba(124,58,237,0.2);
+  --glass-hover: rgba(255,255,255,0.07);
+}
+
+* { box-sizing: border-box; padding: 0; margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background-color: var(--void);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--deep-cosmos); }
+::-webkit-scrollbar-thumb { background: var(--aurora-violet); border-radius: 3px; }
+
+.font-display { font-family: 'Cinzel', serif; }
+.glass-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  transition: all 0.2s ease;
+}
+.glass-card:hover {
+  border-color: rgba(124,58,237,0.4);
+  box-shadow: 0 0 40px rgba(124,58,237,0.2);
+}
+.cosmic-input {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(124,58,237,0.2);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: var(--text-primary);
+  font-size: 14px;
+  transition: all 0.2s;
+  outline: none;
+}
+.cosmic-input::placeholder { color: var(--text-muted); }
+.cosmic-input:focus {
+  border-color: var(--aurora-violet);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+}
+.cosmic-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+.badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 500; }
+.badge-violet { background: rgba(124,58,237,0.2); color: #c4b5fd; border: 1px solid rgba(124,58,237,0.3); }
+.badge-green { background: rgba(16,185,129,0.15); color: #6ee7b7; border: 1px solid rgba(16,185,129,0.3); }
+.badge-red { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+.badge-yellow { background: rgba(251,191,36,0.15); color: #fde68a; border: 1px solid rgba(251,191,36,0.3); }
+
+.cosmic-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.cosmic-table th { text-align: left; padding: 8px 12px; color: var(--text-secondary); font-weight: 500; border-bottom: 1px solid var(--glass-border); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+.cosmic-table td { padding: 10px 12px; border-bottom: 1px solid rgba(124,58,237,0.07); }
+.cosmic-table tr:hover td { background: var(--glass); }
+
+.progress-bar { height: 6px; background: var(--glass); border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--aurora-violet), var(--aurora-indigo)); border-radius: 3px; transition: width 0.5s ease; }
+
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+@keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+@keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 20s linear infinite; }
+.skeleton { background: linear-gradient(90deg,rgba(255,255,255,0.04) 0%,rgba(124,58,237,0.1) 50%,rgba(255,255,255,0.04) 100%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

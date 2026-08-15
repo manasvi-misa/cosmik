@@ -1,0 +1,127 @@
+// This is your Prisma schema file
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String    @id @default(cuid())
+  name            String?
+  email           String    @unique
+  emailVerified   DateTime?
+  password        String?
+  image           String?
+  role            Role      @default(USER)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  accounts    Account[]
+  sessions    Session[]
+  birthCharts BirthChart[]
+  settings    UserSettings?
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model UserSettings {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  theme     String   @default("dark")
+  language  String   @default("en")
+  timezone  String   @default("UTC")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model BirthChart {
+  id              String         @id @default(cuid())
+  userId          String
+  name            String
+  gender          Gender
+  dateOfBirth     DateTime
+  timeOfBirth     String?
+  unknownTime     Boolean        @default(false)
+  country         String
+  state           String?
+  city            String
+  latitude        Float
+  longitude       Float
+  timezone        String
+  notes           String?        @db.Text
+  astrologySystem AstrologySystem
+  isFavorite      Boolean        @default(false)
+  
+  // Vedic specific
+  vedicSchool     String?
+  ayanamsa        String?
+  
+  // Western specific
+  houseSystem     String?
+  
+  // Calculated data cache
+  calculatedData  Json?
+  
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  lastViewedAt    DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum AstrologySystem {
+  VEDIC
+  WESTERN
+  BAZI
+}
