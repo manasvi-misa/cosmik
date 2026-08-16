@@ -1,8 +1,8 @@
-# ✦ Cosmik — Multi-System Astrology Web Application
+# Cosmik — Multi-System Astrology Web Application
 
 A modern, production-ready astrology web application supporting **Vedic Jyotish**, **Western Natal**, and **Chinese BaZi (Four Pillars)** astrology systems.
 
-## 🚀 Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -15,9 +15,9 @@ A modern, production-ready astrology web application supporting **Vedic Jyotish*
 | Deployment | Docker + Docker Compose |
 | Geocoding | OpenStreetMap Nominatim (free, no API key) |
 
-## ✦ Features
+## Features
 
-### 🪐 Vedic Jyotish
+### Vedic Jyotish
 - 7 school presets (Parashara, KP, Jaimini, Nadi, Tajika, Lal Kitab, Bhrigu)
 - 8 ayanamsas (Lahiri, Raman, Krishnamurti, Yukteswar, Fagan Bradley, True Chitra, Pushya Paksha)
 - South Indian style SVG chart
@@ -29,7 +29,7 @@ A modern, production-ready astrology web application supporting **Vedic Jyotish*
 - Shadbala strength values
 - Current transits (Gochar) overlay
 
-### ⭐ Western Natal
+### Western Natal
 - 9 house systems (Placidus, Whole Sign, Equal, Porphyry, Campanus, Regiomontanus, Koch, Topocentric, Morinus)
 - Interactive SVG wheel with color-coded aspect lines
 - 11 aspect types (Conjunction, Opposition, Trine, Square, Sextile + minor)
@@ -37,7 +37,7 @@ A modern, production-ready astrology web application supporting **Vedic Jyotish*
 - Chart shape detection (Bundle, Bowl, Locomotive, Seesaw, Splash)
 - North Node, Chiron, Lilith, Part of Fortune, Midheaven
 
-### ☯️ BaZi (Four Pillars)
+### BaZi (Four Pillars)
 - Year, Month, Day, Hour pillars with Heavenly Stems & Earthly Branches
 - Hidden stems, Ten Gods, Na Yin, Void branches for each pillar
 - Five Element balance with percentages
@@ -76,7 +76,7 @@ Open http://localhost:3000
 
 **Demo:** `demo@cosmik.app` / `demo1234` | Admin: `admin@cosmik.app` / `admin123`
 
-## 🐳 Docker
+## Docker
 
 ```bash
 cp .env.example .env   # Set AUTH_SECRET and NEXTAUTH_URL
@@ -85,7 +85,7 @@ docker compose exec app npx prisma db push
 docker compose exec app npx prisma db seed
 ```
 
-## 📁 Structure
+## Structure
 
 ```
 src/
@@ -102,7 +102,7 @@ src/
 └── types/           # TypeScript types
 ```
 
-## 🔮 Roadmap
+## Roadmap
 - Swiss Ephemeris for arc-second precision
 - AI interpretations (Claude API)
 - Kundli matching, Muhurta, Panchang
